@@ -60,6 +60,24 @@ Why this matters? Being able to train on longer texts allows the models to devel
    - Shift Short Attention efficiently extends context without added computational costs. Unlike standard self-attention with O(n²) computational cost, S2-Attn allows tokens to focus on nearby       tokens within a shifted window, making it efficient for long sequences.
    - In standard self-attention, each token in the input sequence attends to all other tokens, including itself. This results in a full attention matrix where the attention weights are computed      based on the similarity between the query, key, and value representations of tokens. The computational complexity of standard self-attention is quadratic (O(n^2)) with respect to the            sequence length, making it computationally expensive for very long sequences.
    - Shift short attention is designed to be more computationally efficient by limiting the range of tokens each token attends to. Instead of attending to all tokens, each token might attend to      a subset of nearby tokens, reducing the overall attention scope. By reducing the attention scope, the computational complexity becomes linear (O(n)) with respect to the sequence length,         making it more scalable for longer contexts. The shift short attention mechanism can be seen as a form of sparse attention where only a subset of attention weights is computed, and the          rest are set to zero or ignored.
+   - Let’s say you want to train a model with an 8k context window. Input could be split in multiple parts with maximal lengths of 2k tokens as used for classic fine-tuning:
+```
+1, 2, …, 2047, 2048
+2049, 2050, …, 4095, 4096
+4097, 4098, …, 6143, 6144
+6145, 6146, …, 8191, 8192
+```
+The approach above does not work since the relations between the different parts of the documents get lost which is why overlaps are utilized by LongLoRA.
+```
+1, …, 2048
+1025, …, 3072
+2049, …, 4096
+3073, …, 5120
+4097, …, 6144
+5121, …, 7168
+6145, …, 8192
+7169, …, 8192, 1, …, 1024
+```
 
    ![image](https://github.com/sarvechqadir/LongLora/assets/78235308/a13b579d-6f18-4e93-943e-e224269d93f2)
 
