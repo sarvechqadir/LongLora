@@ -147,9 +147,10 @@ No explicit errors were mentioned.
 There's no mention of disputes or criticisms.
 
 ## Code Demonstration
-Please refer to the LoRA_guide.ipynb notebook.
+Please refer to the [LongLoRA-notebook.ipynb](https://github.com/sarvechqadir/LongLora/blob/main/LongLoRA_notebook.ipynb) notebook.
 
 ## Resources
+
 
 
 
