@@ -92,8 +92,46 @@ End
 
 ```
 
+---
+
+
+---
+
+## Results:
+
+1. **Model Extensions**:
+   - The authors expanded the pre-trained LLaMA2 models (7B, 13B, and 70B versions) to allow for larger context window sizes.
+
+2. **Performance in Long-Sequence Language Modeling**:
+   - Using the PG-19 and RedPajama datasets, longer sequences enhanced perplexity scores, showcasing LongLoRA's effectiveness. For example, the LLaMA2 7B model's perplexity reduced from 2.72 to 2.50 when the context window size increased from 8192 to 32768.
+
+3. **Topic Retrieval Performance**:
+   - In the LongChat dataset, LongLoRA matched the performance of the state-of-the-art model, LongChat-13B, across various conversation lengths. LongLoRA's efficiency was highlighted in its method of next-token generation using the RedPajama dataset, outperforming LongChat-13B in the 16k evaluation.
+
+4. **Computation Analysis**:
+   - As context length grows, the FLOPs ratio of attention in models without S2-Attn also increases. Introducing S2-Attn significantly reduces FLOPs, especially for longer context lengths. For instance, at a context length of 8192, attention accounts for 24.5% of total FLOPs without S2-Attn, but this ratio jumps to 72.2% at a context length of 65536. With S2-Attn, it drops to 39.4%.
+
+---
+
+
 
 ## Critical Analysis:
+
+**LongLora Advantages**:
+
+1. **Preservation of Original Architecture**:
+   - Models fine-tuned with S2-Attn maintain the original attention architecture during inference, facilitating the use of existing optimization techniques and infrastructure.
+
+2. **Compatibility with Existing Techniques and Tools**:
+   - LongLoRA works with attention optimization techniques like FlashAttention-2 during both training and inference, allowing researchers to integrate LongLoRA into their current workflows seamlessly.
+
+3. **Easy Implementation**:
+   - Implementing LongLoRA is simple, necessitating only two lines of code during training. There's also an option to keep the original standard self-attention of the trained model during inference.
+
+4. **Train VS Inference Adaptation**:
+   - LongLoRA provides an efficient solution for both training and inference, with the flexibility to maintain the original standard self-attention in the trained model during inference.
+
+
 
 **1. What was overlooked by the authors?**
 One potential oversight could be the lack of comparison with other state-of-the-art methods that address similar challenges.
@@ -107,6 +145,12 @@ No explicit errors were mentioned.
 
 **4. Have others disputed the findings?**
 There's no mention of disputes or criticisms.
+
+## Code Demonstration
+Please refer to the LoRA_guide.ipynb notebook.
+
+## Resources
+
 
 
 
