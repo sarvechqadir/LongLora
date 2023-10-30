@@ -25,7 +25,7 @@ Chen, Y., Qian, S., Tang, H., Lai, X., Liu, Z., Han, S., & Jia, J. (2023). LongL
 
 
 ## First Chosen Topic - Background:
-**Question for Class Discussion**: Why is the limitation of fixed context sizes and why is it important to extend the context size of large language models?
+**Question for Class Discussion**: What is the limitation of fixed context sizes and why is it important to extend the context size of large language models?
 
 As AI models like ChatGPT get bigger, training them requires more and more computing power. Researchers are looking for ways to train these large AI models without needing Google-scale resources. 
 Why this matters? Being able to train on longer texts allows the models to develop a deeper understanding and reasoning. This could let them answer questions that require more context, like summarizing a long research paper. The standard way of training these models on long texts takes a huge amount of computing power. For example, fine-tuning the 70B parameter LLaMA model on 32,000 tokens takes 128 high-end A100 GPUs. More efficient training means these powerful models can be created and adapted with more reasonable resources. To address this challenge, recent efforts have focused on extending the context range of these LLMs. However, training an LLM from scratch with long sequences poses computational challenges, and fine-tuning an existing pre-trained LLM is also considerably expensive.
