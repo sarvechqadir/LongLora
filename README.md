@@ -16,6 +16,8 @@ Chen, Y., Qian, S., Tang, H., Lai, X., Liu, Z., Han, S., & Jia, J. (2023). LongL
    - The paper also introduces a dataset, LongQA, for supervised fine-tuning containing over 3k long context question-answer pairs.
    - The code, models, dataset, and demo are available on GitHub.
 
+![image](https://github.com/sarvechqadir/LongLora/assets/78235308/13fda6fb-1172-410f-870b-c1ae292ceb76)
+
 2. **Background**:
    - Large language models (LLMs) like LLaMA and LLaMA2 have predefined context sizes which limit their application in tasks like summarizing long documents or answering long questions.
    - The paper discusses the computational challenges of training LLMs with longer contexts and the inefficiencies of existing methods.
@@ -24,7 +26,10 @@ Chen, Y., Qian, S., Tang, H., Lai, X., Liu, Z., Han, S., & Jia, J. (2023). LongL
 3. **LongLoRA Design**:
    - LongLoRA introduces shift short attention during fine-tuning but retains the original standard self-attention during inference.
    - The paper emphasizes the importance of trainable embedding and normalization layers for long context learning, even though they constitute a small proportion of the model's parameters.
-   - 
+
+![image](https://github.com/sarvechqadir/LongLora/assets/78235308/77ecde7c-c491-4434-b63f-b9852af73c33)
+
+     
 
 4. **Related Work**:
    - The paper discusses various methods developed to increase the context length of transformers.
@@ -40,6 +45,9 @@ Chen, Y., Qian, S., Tang, H., Lai, X., Liu, Z., Han, S., & Jia, J. (2023). LongL
    - The output is combined coordinate-wise, using pre-trained self-attention weights.
    - The first and last 1024 tokens are in the same group, likely aiding in information exchange between the text's start and end.
    - Shift Short Attention efficiently extends context without added computational costs. Unlike standard self-attention with O(n²) computational cost, S2-Attn allows tokens to focus on nearby       tokens within a shifted window, making it efficient for long sequences.
+
+   ![image](https://github.com/sarvechqadir/LongLora/assets/78235308/a13b579d-6f18-4e93-943e-e224269d93f2)
+
 
 
 6. **Parameter-Efficient Fine-Tuning**:
