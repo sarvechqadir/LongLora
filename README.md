@@ -41,7 +41,6 @@ Why this matters? Being able to train on longer texts allows the models to devel
 
 ![image](https://github.com/sarvechqadir/LongLora/assets/78235308/77ecde7c-c491-4434-b63f-b9852af73c33)
 
-     
 
 
 5. **Shift Short Attention**:
@@ -53,23 +52,26 @@ Why this matters? Being able to train on longer texts allows the models to devel
    - S2-Attn addresses this by shifting tokens by half the group size, ensuring better information flow between adjacent groups.
    - The output is combined coordinate-wise, using pre-trained self-attention weights.
    - The first and last 1024 tokens are in the same group, likely aiding in information exchange between the text's start and end.
+
+## Second Chosen Topic - LongLoRA Design:
+**Question for Class Discussion**: How does the shift short attention mechanism help with context tokens? What advantages does it offer?
+
+
    - Shift Short Attention efficiently extends context without added computational costs. Unlike standard self-attention with O(n²) computational cost, S2-Attn allows tokens to focus on nearby       tokens within a shifted window, making it efficient for long sequences.
+   - In standard self-attention, each token in the input sequence attends to all other tokens, including itself. This results in a full attention matrix where the attention weights are computed      based on the similarity between the query, key, and value representations of tokens. The computational complexity of standard self-attention is quadratic (O(n^2)) with respect to the            sequence length, making it computationally expensive for very long sequences.
+   - Shift short attention is designed to be more computationally efficient by limiting the range of tokens each token attends to. Instead of attending to all tokens, each token might attend to      a subset of nearby tokens, reducing the overall attention scope. By reducing the attention scope, the computational complexity becomes linear (O(n)) with respect to the sequence length,         making it more scalable for longer contexts. The shift short attention mechanism can be seen as a form of sparse attention where only a subset of attention weights is computed, and the          rest are set to zero or ignored.
 
    ![image](https://github.com/sarvechqadir/LongLora/assets/78235308/a13b579d-6f18-4e93-943e-e224269d93f2)
 
 
 
-6. **Parameter-Efficient Fine-Tuning**:
+5. **Parameter-Efficient Fine-Tuning**:
    - LongLoRA's efficiency is boosted by rethinking the fine-tuning approach for context expansion.
    - LoRA, typically applied over attention layers, is effective when paired with embedding and normalization layers during training.
    - These components are vital for long-context learning but represent only a small portion of the model's parameters.
    - The inclusion of trainable embedding and normalization layers is key to LongLoRA's success.
    
 
-
-## Second Chosen Topic - LongLoRA Design:
-LongLoRA introduces a new mechanism called shift short attention during fine-tuning but retains the original standard self-attention during inference.
-**Question for Class Discussion**: How does the shift short attention mechanism in LongLoRA differ from standard self-attention, and what advantages does it offer?
 
 
 ##  Pseudocode Description of the Proposed Model:
