@@ -24,6 +24,7 @@ Chen, Y., Qian, S., Tang, H., Lai, X., Liu, Z., Han, S., & Jia, J. (2023). LongL
 3. **LongLoRA Design**:
    - LongLoRA introduces shift short attention during fine-tuning but retains the original standard self-attention during inference.
    - The paper emphasizes the importance of trainable embedding and normalization layers for long context learning, even though they constitute a small proportion of the model's parameters.
+   - 
 
 4. **Related Work**:
    - The paper discusses various methods developed to increase the context length of transformers.
@@ -31,14 +32,22 @@ Chen, Y., Qian, S., Tang, H., Lai, X., Liu, Z., Han, S., & Jia, J. (2023). LongL
 
 5. **Shift Short Attention**:
    - The paper delves into the details of the proposed shift short attention mechanism, explaining its design and advantages over standard self-attention.
+   - Shift short attention uses sparse local attention during fine-tuning instead of the usual dense global attention.
+   - The input document is divided into distinct groups, with attention applied within each group.
+   - For a model processing 8192 tokens, during self-attention, each group is restricted to 2048 tokens, resulting in 4 groups.
+   - This method can face challenges with very long contexts, leading to increased perplexity due to limited information exchange between groups.
+   - S2-Attn addresses this by shifting tokens by half the group size, ensuring better information flow between adjacent groups.
+   - The output is combined coordinate-wise, using pre-trained self-attention weights.
+   - The first and last 1024 tokens are in the same group, likely aiding in information exchange between the text's start and end.
+   - Shift Short Attention efficiently extends context without added computational costs. Unlike standard self-attention with O(n²) computational cost, S2-Attn allows tokens to focus on nearby       tokens within a shifted window, making it efficient for long sequences.
 
-**Context**: The paper introduces LongLoRA, a method designed to efficiently fine-tune large language models (LLMs) to extend their context sizes.
 
-**Problem Addressed**: Training LLMs with extended context sizes is computationally expensive and challenging.
-
-**Approach**: LongLoRA uses sparse local attention during fine-tuning and dense global attention during inference to address the computational challenges.
-
-**Solution**: The method has been tested on various tasks and models, showing promising results. Additionally, a new dataset, LongQA, has been introduced for supervised fine-tuning.
+6. **Parameter-Efficient Fine-Tuning**:
+   - LongLoRA's efficiency is boosted by rethinking the fine-tuning approach for context expansion.
+   - LoRA, typically applied over attention layers, is effective when paired with embedding and normalization layers during training.
+   - These components are vital for long-context learning but represent only a small portion of the model's parameters.
+   - The inclusion of trainable embedding and normalization layers is key to LongLoRA's success.
+   
 
 ## First Chosen Topic - Background:
 Large language models like LLaMA and LLaMA2 have predefined context sizes which limit their application in tasks like summarizing long documents or answering long questions.
@@ -90,6 +99,8 @@ No explicit errors were mentioned.
 
 **4. Have others disputed the findings?**
 There's no mention of disputes or criticisms.
+
+
 
 
 
