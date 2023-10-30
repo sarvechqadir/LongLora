@@ -150,6 +150,19 @@ There's no mention of disputes or criticisms.
 Please refer to the [LongLoRA-notebook.ipynb](https://github.com/sarvechqadir/LongLora/blob/main/LongLoRA_notebook.ipynb) notebook.
 
 ## Resources
+**Medium:**
+   - [LongLoRA Explained: Efficient Fine-Tuning of Long Context LLMs](https://ai.plainenglish.io/longlora-how-to-extend-llms-context-sizes-through-fine-tuning-9f27894d1c06)
+
+**Youtube:**
+   - [How to code long-context LLM: LongLoRA explained on LLama 2 100K](https://youtu.be/hf5N-SlqRmA?si=gsqygN3LcmfE1qsp)
+   - [LongLoRA: Efficient Fine-tuning of Long-Context Large Language Models](https://youtu.be/cftIv4DKu1E?si=SlwNQknD3SW_E8S6)
+
+**Github**
+   - [LongLoRA - Main GitHub repo](https://github.com/dvlab-research/LongLoRA/tree/main)
+
+**HuggingFace**
+   - [HuggingFace models](https://huggingface.co/Yukang)
+
 
 
 
