@@ -111,7 +111,9 @@ End
 4. **Computation Analysis**:
    - As context length grows, the FLOPs ratio of attention in models without S2-Attn also increases. Introducing S2-Attn significantly reduces FLOPs, especially for longer context lengths. For instance, at a context length of 8192, attention accounts for 24.5% of total FLOPs without S2-Attn, but this ratio jumps to 72.2% at a context length of 65536. With S2-Attn, it drops to 39.4%.
 
----
+
+![image](https://github.com/sarvechqadir/LongLora/assets/78235308/142f2920-1b0c-41da-90bb-bd7651d3f8d1)
+
 
 
 
