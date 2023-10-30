@@ -134,19 +134,24 @@ End
 
 
 **1. What was overlooked by the authors?**
+
 One potential oversight could be the lack of comparison with other state-of-the-art methods that address similar challenges.
 
 **2. What could have been developed further?**
+
 The real-world applications and use-cases of LongLoRA could be explored in more depth. Demonstrating its efficacy in practical scenarios would provide more validation to the approach.
 A more comprehensive analysis of the computational savings and performance trade-offs when using LongLoRA compared to other methods might add value.
 
 **3. Were there any errors?**
+
 No explicit errors were mentioned.
 
 **4. Have others disputed the findings?**
+
 There's no mention of disputes or criticisms.
 
 ## Code Demonstration
+
 Please refer to the [LongLoRA-notebook.ipynb](https://github.com/sarvechqadir/LongLora/blob/main/LongLoRA_notebook.ipynb) notebook.
 
 ## Resources
