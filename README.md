@@ -25,22 +25,24 @@ Chen, Y., Qian, S., Tang, H., Lai, X., Liu, Z., Han, S., & Jia, J. (2023). LongL
 
 
 ## First Chosen Topic - Background:
-**Question for Class Discussion**: Why is it important to extend the context size of large language models, and what potential applications can benefit from it?
+**Question for Class Discussion**: Why is the limitation of fixed context sizes and why is it important to extend the context size of large language models?
 
-As AI models like ChatGPT get bigger, training them requires more and more computing power. Researchers are looking for ways to train these large AI models without needing Google-scale resources. A new paper explores a new method called LongLoRA that can efficiently train models on much longer texts.
-Why this matters? Being able to train on longer texts allows the models to develop deeper understanding and reasoning. This could let them answer questions that require more context, like summarizing a long research paper. The standard way of training these models on long texts takes a huge amount of computing power. For example, fine-tuning the 70B parameter LLaMA model on 32,000 tokens takes 128 high-end A100 GPUs! More efficient training means these powerful models can be created and adapted with more reasonable resources. This expands access beyond just the biggest tech companies.
+As AI models like ChatGPT get bigger, training them requires more and more computing power. Researchers are looking for ways to train these large AI models without needing Google-scale resources. 
+Why this matters? Being able to train on longer texts allows the models to develop a deeper understanding and reasoning. This could let them answer questions that require more context, like summarizing a long research paper. The standard way of training these models on long texts takes a huge amount of computing power. For example, fine-tuning the 70B parameter LLaMA model on 32,000 tokens takes 128 high-end A100 GPUs. More efficient training means these powerful models can be created and adapted with more reasonable resources. To address this challenge, recent efforts have focused on extending the context range of these LLMs. However, training an LLM from scratch with long sequences poses computational challenges, and fine-tuning an existing pre-trained LLM is also considerably expensive.
 
 3. **LongLoRA Design**:
-   - LongLoRA introduces shift short attention during fine-tuning but retains the original standard self-attention during inference.
-   - The paper emphasizes the importance of trainable embedding and normalization layers for long context learning, even though they constitute a small proportion of the model's parameters.
+   - When it comes to processing very long sequences, the standard self-attention mechanism becomes computationally expensive, making training slower and requiring more GPU memory. LongLoRA          lays on the principle that although dense global attention is needed during inference, finetuning the model can be effectively and efficiently done by sparse local attention.
+   - LongLoRA extends the context length during fine-tuning while maintaining high performance and low complexity, achieved by enhancing the Low-Rank Adapter (LoRA) method, a popular technique       for simplifying fine-tuning in transformer models.
+   - What sets LoRA apart is its approach of training and storing additional weight changes in a separate matrix while leaving the pre-trained model weights untouched. This simplifies the fine-      tuning process compared to other methods.
+   - LoRA is not highly effective or efficient for training long-context models, and even increasing the LoRA ranks cannot reduce the gap. This inefficiency is evident in elevated perplexity         and increased computational demands.
+   - LongLoRA introduces a shift-short attention during fine-tuning but retains the original standard self-attention during inference.
+   - The paper emphasizes the importance of trainable embedding and normalization layers for long-context learning, even though they constitute a small proportion of the model's parameters.
+
 
 ![image](https://github.com/sarvechqadir/LongLora/assets/78235308/77ecde7c-c491-4434-b63f-b9852af73c33)
 
      
 
-4. **Related Work**:
-   - The paper discusses various methods developed to increase the context length of transformers.
-   - It also touches upon other efficient fine-tuning methods and their relevance to the current research.
 
 5. **Shift Short Attention**:
    - The paper delves into the details of the proposed shift short attention mechanism, explaining its design and advantages over standard self-attention.
